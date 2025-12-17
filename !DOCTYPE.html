@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Bajarte la luna 🌙</title>
+
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: radial-gradient(circle at bottom, #020111, #000);
+    font-family: 'Georgia', serif;
+}
+
+/* CIELO ESTRELLADO */
+.stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(1px 1px at 10% 20%, white, transparent),
+        radial-gradient(1px 1px at 30% 80%, white, transparent),
+        radial-gradient(1px 1px at 50% 40%, white, transparent),
+        radial-gradient(1px 1px at 70% 60%, white, transparent),
+        radial-gradient(1px 1px at 90% 30%, white, transparent);
+    background-size: 250px 250px;
+    animation: starsMove 80s linear infinite;
+}
+
+@keyframes starsMove {
+    from { background-position: 0 0; }
+    to { background-position: 1500px 1500px; }
+}
+
+/* HOMBRE */
+.man {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 120px;
+}
+
+/* BRAZOS */
+.arms {
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 80px;
+    animation: liftArms 4s ease-out forwards;
+}
+
+@keyframes liftArms {
+    to { transform: translateX(-50%) translateY(-60px); }
+}
+
+/* LUNA */
+.moon-container {
+    position: absolute;
+    top: -150px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: moonDown 5s ease-out forwards;
+}
+
+@keyframes moonDown {
+    to { top: 120px; }
+}
+
+.moon {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fff, #ddd);
+    position: relative;
+    animation: glow 2.5s infinite ease-in-out;
+}
+
+@keyframes glow {
+    0%,100% { box-shadow: 0 0 25px #fff; }
+    50% { box-shadow: 0 0 60px #fff; }
+}
+
+/* LUNA ABIERTA */
+.half {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #fff, #ddd);
+    top: 0;
+}
+
+.left {
+    clip-path: inset(0 50% 0 0);
+    animation: openLeft 3s forwards;
+    animation-delay: 5s;
+}
+
+.right {
+    clip-path: inset(0 0 0 50%);
+    animation: openRight 3s forwards;
+    animation-delay: 5s;
+}
+
+@keyframes openLeft {
+    to { transform: translateX(-90px); }
+}
+
+@keyframes openRight {
+    to { transform: translateX(90px); }
+}
+
+/* PAPEL */
+.paper {
+    position: absolute;
+    top: 170px;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    background: #fffaf0;
+    padding: 28px 35px;
+    border-radius: 14px;
+    box-shadow: 0 15px 35px rgba(0,0,0,.4);
+    text-align: center;
+    max-width: 340px;
+    animation: paperShow 3s forwards;
+    animation-delay: 8s;
+}
+
+.paper p {
+    font-size: 19px;
+    color: #333;
+    line-height: 1.4;
+}
+
+@keyframes paperShow {
+    to { transform: translateX(-50%) scale(1); }
+}
+
+/* CIERRE */
+.close {
+    animation: closeMoon 3s forwards;
+}
+
+@keyframes closeMoon {
+    to { transform: translateX(0); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<div class="moon-container">
+    <div class="moon">
+        <div class="half left"></div>
+        <div class="half right"></div>
+    </div>
+</div>
+
+<div class="paper">
+    <p>
+        Recuerda que te prometí bajarte las estrellas,<br>
+        pero hoy te bajé la luna 🌙
+    </p>
+</div>
+
+<div class="man">
+    🧍‍♂️
+    <div class="arms">🙌</div>
+</div>
+
+<script>
+setTimeout(() => {
+    document.querySelector('.left').classList.add('close');
+    document.querySelector('.right').classList.add('close');
+    document.querySelector('.paper').style.display = 'none';
+}, 13000);
+</script>
+
+</body>
+</html>
